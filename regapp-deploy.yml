@@ -1,7 +1,7 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: valaxy-regapp
+  name: regapp-deployment
   labels: 
      app: regapp
 
@@ -17,13 +17,8 @@ spec:
         app: regapp
     spec:
       containers:
-      - name: regapp
-        image: valaxy/regapp
+      - name: regapp-cont
+        image: abhi2305/regapp:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
