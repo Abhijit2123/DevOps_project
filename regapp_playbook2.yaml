@@ -1,0 +1,19 @@
+---
+- hosts: docker
+  become: true
+
+  tasks:
+  - name: Stop the container
+    command: docker stop regapp-cont 
+	  ignore_errors: yes
+	
+  - name: remove the container 
+    command: docker rm 	regapp-cont
+	  ignore_errors: yes
+	
+  - name: remove the image
+    command: docker rmi -f abhi2305/regapp:latest
+	  ignore_errors: yes
+	
+  - name: create docker container
+    command: docker run -d --name regapp-cont -p 8082:8080 abhi2305/regapp:latest
